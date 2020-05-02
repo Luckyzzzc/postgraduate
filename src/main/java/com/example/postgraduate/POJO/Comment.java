@@ -3,12 +3,28 @@ package com.example.postgraduate.POJO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class comment {
+public class Comment {
     private Integer comment_id;
     private String content;
     private Integer comment_user;
+    private Integer comment_invitation;
     private Integer comment_status;
     private Integer like_number;
+    private String create_time;
+    private String update_time;
+
+    public Comment(){}
+
+    public Comment(String content, Integer comment_user, Integer comment_invitation){
+        this.comment_id = 0;
+        this.content = content;
+        this.comment_user = comment_user;
+        this.comment_invitation = comment_invitation;
+        this.comment_status = 0;
+        this.like_number = 0;
+        this.create_time = null;
+        this.update_time = null;
+    }
 
     public Integer getComment_id() {
         return comment_id;
@@ -50,22 +66,27 @@ public class comment {
         this.like_number = like_number;
     }
 
-    public String getCreate_date() {
-        return create_date;
+    public String getCreate_time() {
+        return create_time;
     }
 
-    public void setCreate_date(String create_date) {
-        this.create_date = create_date;
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
     }
 
-    public String getUpdate_date() {
-        return update_date;
+    public String getUpdate_time() {
+        return update_time;
     }
 
-    public void setUpdate_date(String update_date) {
-        this.update_date = update_date;
+    public void setUpdate_time(String update_time) {
+        this.update_time = update_time;
     }
 
-    private String create_date;
-    private String update_date;
+    public Integer getComment_invitation() {
+        return comment_invitation;
+    }
+
+    public void setComment_invitation(Integer comment_invitation) {
+        this.comment_invitation = comment_invitation;
+    }
 }

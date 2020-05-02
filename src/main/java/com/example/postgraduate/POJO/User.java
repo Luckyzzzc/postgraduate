@@ -1,8 +1,5 @@
 package com.example.postgraduate.POJO;
 
-import org.springframework.stereotype.Component;
-
-@Component("user")
 public class User {
     private Integer user_id;
     private String username;

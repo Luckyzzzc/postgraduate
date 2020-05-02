@@ -39,4 +39,29 @@ public class userController {
     boolean login(@RequestParam String username, @RequestParam String password){
         return userService.find(username).getPassword().compareTo(password) == 0;
     }
+
+    @RequestMapping(value = "/addinvitation")
+    boolean addInvitation(@RequestParam Integer user_id){
+        return userService.addInvitation(user_id);
+    }
+
+    @RequestMapping(value = "/addcomment")
+    boolean addComment(@RequestParam Integer user_id){
+        return userService.addComment(user_id);
+    }
+
+    @RequestMapping(value = "/changesex")
+    boolean changeSex(@RequestParam Integer user_id, @RequestParam Integer sex){
+        return userService.changeSex(user_id, sex);
+    }
+
+    @RequestMapping(value = "/addfollow")
+    boolean addFollow(@RequestParam Integer user_id){
+        return userService.addFollow(user_id);
+    }
+
+    @RequestMapping(value = "/changenickname")
+    boolean changeNickname(@RequestParam Integer user_id, @RequestParam String nickname){
+        return userService.changeNickname(user_id, nickname);
+    }
 }

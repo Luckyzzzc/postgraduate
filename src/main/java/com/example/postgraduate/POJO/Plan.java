@@ -3,7 +3,7 @@ package com.example.postgraduate.POJO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class plan {
+public class Plan {
     private Integer plan_id;
     private Integer user_id;
     private String date;
@@ -12,6 +12,20 @@ public class plan {
     private String plan_content;
     private String create_time;
     private String end_time;
+
+    public Plan(){}
+
+    public Plan(Integer user_id, Integer plan_type, String plan_content){
+        this.plan_id = 0;
+        this.user_id = user_id;
+        this.plan_type = plan_type;
+        this.date = null;
+        this.plan_status  = 0;
+        this.plan_content = plan_content;
+        this.create_time = null;
+        this.end_time = null;
+    }
+
 
     public Integer getPlan_id() {
         return plan_id;

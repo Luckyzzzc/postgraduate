@@ -2,6 +2,9 @@ package com.example.postgraduate.POJO;
 
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Component
 public class Invitation {
     private Integer invitation_id;
@@ -13,6 +16,23 @@ public class Invitation {
     private Integer post_user;
     private String update_time;
     private String create_time;
+
+    public Invitation(){}
+
+    public Invitation(String invitation_title, String content, Integer plate, Integer post_user){
+        this.invitation_title = invitation_title;
+        this.content = content;
+        this.plate = plate;
+        this.invitation_status = 0;
+        this.scan_number = 0;
+        this.post_user = post_user;
+
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+
+        this.create_time = formatter.format(date);
+        this.update_time = formatter.format(date);
+    };
 
     public Integer getInvitation_id() {
         return invitation_id;

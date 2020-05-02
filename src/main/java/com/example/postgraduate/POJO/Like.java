@@ -3,7 +3,7 @@ package com.example.postgraduate.POJO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class like {
+public class Like {
     private Integer like_id;
     private Integer comment_id;
     private Integer invitation_id;

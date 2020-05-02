@@ -33,13 +33,13 @@ public class UserServiceIml implements UserService {
     }
 
     @Override
-    public void addInvitation(Integer user_id) {
-
+    public boolean addInvitation(Integer user_id) {
+        return userMapper.addInvitation(user_id);
     }
 
     @Override
-    public void addComment(Integer user_id) {
-
+    public boolean addComment(Integer user_id) {
+        return userMapper.addComment(user_id);
     }
 
     @Override
@@ -50,6 +50,21 @@ public class UserServiceIml implements UserService {
     @Override
     public User findById(Integer user_id) {
         return userMapper.findById(user_id);
+    }
+
+    @Override
+    public boolean changeSex(Integer user_id, Integer sex) {
+        return userMapper.changeSex(user_id, sex);
+    }
+
+    @Override
+    public boolean addFollow(Integer user_id) {
+        return userMapper.addFollow(user_id);
+    }
+
+    @Override
+    public boolean changeNickname(Integer user_id, String nickname) {
+        return userMapper.changeNickname(user_id,nickname);
     }
 
 

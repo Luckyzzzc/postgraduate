@@ -11,11 +11,17 @@ public interface UserService {
 
     boolean changePassword(Integer user_id, String oldPassword, String newPassword);
 
-    void addInvitation(Integer user_id);
+    boolean addInvitation(Integer user_id);
 
-    void addComment(Integer user_id);
+    boolean addComment(Integer user_id);
 
     User find(String username);
 
     User findById(Integer user_id);
+
+    boolean changeSex(Integer user_id, Integer sex);
+
+    boolean addFollow(Integer user_id);
+
+    boolean changeNickname(Integer user_id, String nickname);
 }

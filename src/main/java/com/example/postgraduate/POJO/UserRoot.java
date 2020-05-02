@@ -3,7 +3,7 @@ package com.example.postgraduate.POJO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class userRoot {
+public class UserRoot {
     private Integer root_id;
     private String root_name;
 
