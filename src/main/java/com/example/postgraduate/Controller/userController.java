@@ -2,6 +2,8 @@ package com.example.postgraduate.Controller;
 
 import com.example.postgraduate.POJO.User;
 import com.example.postgraduate.Server.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/User")
 @CrossOrigin
+@Api(value = "用户管理类的api文档")
 public class userController {
     @Autowired
     UserService userService;
 
     @RequestMapping(value = "/regist")
+    @ApiOperation(value = "注册")
     boolean regist(@RequestParam String username, @RequestParam String password){
         if(userService.find(username) != null){
             return false;
