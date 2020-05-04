@@ -32,7 +32,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+                .apis(RequestHandlerSelectors.basePackage("com.example.postgraduate"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars)

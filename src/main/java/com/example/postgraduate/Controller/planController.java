@@ -4,11 +4,13 @@ import com.example.postgraduate.POJO.Plan;
 import com.example.postgraduate.Server.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/plan")
+@CrossOrigin
 public class planController {
     @Autowired
     PlanService planService;

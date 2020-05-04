@@ -3,24 +3,31 @@ package com.example.postgraduate.Controller;
 import com.example.postgraduate.POJO.User;
 import com.example.postgraduate.Server.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/User")
 @CrossOrigin
-@Api(value = "用户管理类的api文档")
+@Api(tags = "用户管理类的api文档")
 public class userController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/regist")
-    @ApiOperation(value = "注册")
+    @PostMapping(value = "/regist")
+    @ApiOperation(value = "用于添加用户的接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", defaultValue = "admin", required = true),
+            @ApiImplicitParam(name = "password", value = "密码", defaultValue = "admin", required = true)
+    })
     boolean regist(@RequestParam String username, @RequestParam String password){
         if(userService.find(username) != null){
             return false;
@@ -29,15 +36,23 @@ public class userController {
         return userService.regist(user) != true;
     }
 
-    @RequestMapping(value = "/isban")
+
+    @PostMapping(value = "/isban")
+    @ApiOperation(value = "用于改变用户封禁状态的接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true),
+            @ApiImplicitParam(name = "isBan", value = "封禁状态（1为封禁）", required = true)
+    })
     boolean isBan(@RequestParam Integer user_id, @RequestParam Integer isBan){
         return userService.userBan(user_id,isBan);
     }
 
-    @RequestMapping(value = "/change_password")
+    @PostMapping(value = "/changepassword")
+    @ApiOperation(value = "用于修改用户密码的接口")
     boolean changePassword(@RequestParam Integer user_id, @RequestParam String oldPassword, @RequestParam String newPassword){
         return userService.changePassword(user_id,oldPassword,newPassword);
     }
+
 
     @RequestMapping(value = "/login")
     boolean login(@RequestParam String username, @RequestParam String password){

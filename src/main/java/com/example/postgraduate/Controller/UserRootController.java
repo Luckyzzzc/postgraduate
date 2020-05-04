@@ -4,10 +4,12 @@ import com.example.postgraduate.POJO.UserRoot;
 import com.example.postgraduate.Server.UserRootService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/userroot")
+@CrossOrigin
 public class UserRootController {
     @Autowired
     UserRootService userRootService;
