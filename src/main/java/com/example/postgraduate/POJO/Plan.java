@@ -15,11 +15,11 @@ public class Plan {
 
     public Plan(){}
 
-    public Plan(Integer user_id, Integer plan_type, String plan_content){
+    public Plan(Integer user_id, Integer plan_type, String plan_content, String date){
         this.plan_id = 0;
         this.user_id = user_id;
         this.plan_type = plan_type;
-        this.date = null;
+        this.date = date;
         this.plan_status  = 0;
         this.plan_content = plan_content;
         this.create_time = null;

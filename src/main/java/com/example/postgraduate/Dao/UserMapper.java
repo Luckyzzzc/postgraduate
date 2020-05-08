@@ -1,5 +1,7 @@
 package com.example.postgraduate.Dao;
 
+import com.example.postgraduate.POJO.Comment;
+import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -7,10 +9,12 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserMapper {
-    @Insert("INSERT INTO `postgraduate`.`user` (`username`, `password`, `phone`, `root`, `sex`, `isBan`, `invitation_number`, `comment_number`, `follow`, `head_sculpture`, `nicekname`)" +
+    @Insert("INSERT INTO `postgraduate`.`user` (`username`, `password`, `phone`, `root`, `sex`, `isBan`, `invitation_number`, `comment_number`, `follow`, `head_sculpture`, `nickname`)" +
             " VALUES (#{username}, #{password}, #{phone}, #{root}, #{sex}, #{isBan}, #{invitation_number}, #{comment_number}, #{follow}, #{head_sculpture}, #{nickname});")
     boolean regist(User user);
 
@@ -26,6 +30,9 @@ public interface UserMapper {
     @Update("UPDATE `postgraduate`.`user` SET `user`.`comment_number` = `user`.`comment_number` + 1 WHERE `user`.`user_id` = #{user_id};")
     boolean addComment(Integer user_id);
 
+    @Select("SELECT * FROM `postgraduate`.`user`;")
+    List<User> findAll();
+
     @Select("SELECT * FROM `postgraduate`.`user` WHERE `user`.`username` = #{username};")
     User find(String username);
 
@@ -40,4 +47,10 @@ public interface UserMapper {
 
     @Update("UPDATE `postgraduate`.`user` SET `user`.`nickname` = #{nickname} WHERE `user`.`user_id` = #{user_id};")
     boolean changeNickname(Integer user_id, String nickname);
+
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`post_user` = #{user_id};")
+    List<Invitation> getAllInvitation(Integer user_id);
+
+    @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_user` = #{user_id};")
+    List<Comment> getAllComment(Integer user_id);
 }

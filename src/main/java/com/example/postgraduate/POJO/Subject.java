@@ -3,9 +3,11 @@ package com.example.postgraduate.POJO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class subject {
+public class Subject {
     private Integer subject_id;
     private String subject_name;
+
+    public Subject(){}
 
     public Integer getSubject_id() {
         return subject_id;

@@ -8,50 +8,116 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/invitation")
 @CrossOrigin
+@ResponseBody
 @Api(tags = "发帖类的api文档")
 public class invitationController {
     @Autowired
     InvitationService invitationService;
 
-    @RequestMapping(value = "/post")
+    @PostMapping(value = "/post")
     @ApiOperation(value = "用于添加帖子的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true),
-            @ApiImplicitParam(name = "invitation_title", value = "帖子标题", defaultValue = "福大考研心得", required = true),
-            @ApiImplicitParam(name = "invitation_content", value = "帖子内容", defaultValue = "我的心得内容", required = true),
-            @ApiImplicitParam(name = "invitation_plate", value = "帖子分区", defaultValue = "1", required = true)
-    })
-    boolean post(@RequestParam Integer user_id, @RequestParam String invitation_title,
-                 @RequestParam String invitation_content, @RequestParam Integer invitation_plate){
-        Invitation invitation = new Invitation(invitation_title,invitation_content,invitation_plate,user_id);
+    boolean post(@RequestBody postInvitation postInvitation){
+        Invitation invitation = new Invitation(postInvitation.getInvitation_title(),postInvitation.getContent(),postInvitation.getPlate(),postInvitation.getPost_user());
         return invitationService.post(invitation);
     }
 
-    @RequestMapping(value = "/changestatus")
+    @PostMapping(value = "/changestatus")
     @ApiOperation(value = "用于改变帖子的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "invitation_id", value = "帖子id", defaultValue = "1", required = true),
-            @ApiImplicitParam(name = "invitation_status", value = "帖子标题", defaultValue = "福大考研心得", required = true)
-    })
-    boolean changestatus(Integer invitation_id, Integer invitation_status){
-        return invitationService.changeStatus(invitation_id, invitation_status);
+    boolean changestatus(@RequestBody changeInvitation changeInvitation){
+        return invitationService.changeStatus(changeInvitation.getInvitation_id(), (Integer)changeInvitation.getDate());
     }
 
-    @RequestMapping(value = "/addscan")
+    @PostMapping(value = "/addscan")
     @ApiOperation(value = "用于增加帖子浏览数的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "invitation_id", value = "帖子id", defaultValue = "1", required = true)
-    })
-    boolean addScan(Integer invitation_id){
+    boolean addScan(@RequestBody Integer invitation_id){
         return invitationService.addScan(invitation_id);
     }
+
+    @PostMapping(value = "/gethot")
+    @ApiOperation(value = "用于获得热门帖子")
+    List<Invitation> getHotInvitation(){
+        return invitationService.getHotInvitation();
+    }
+
+    @PostMapping(value = "/getinvitation")
+    @ApiOperation(value = "获得帖子")
+    List<Invitation> getInvitation(){
+        return invitationService.getInvitation();
+    }
+
+    @PostMapping(value = "/getplateinvition")
+    @ApiOperation(value = "根据板块获得帖子")
+    List<Invitation> getPlateInvitation(@RequestBody Integer plate){
+        return invitationService.getPlateInvitation(plate);
+    }
+}
+
+class changeInvitation{
+    Integer invitation_id;
+    Object date;
+
+    public Integer getInvitation_id() {
+        return invitation_id;
+    }
+
+    public void setInvitation_id(Integer invitation_id) {
+        this.invitation_id = invitation_id;
+    }
+
+    public Object getDate() {
+        return date;
+    }
+
+    public void setDate(Object date) {
+        this.date = date;
+    }
+}
+
+class postInvitation{
+    public String getInvitation_title() {
+        return invitation_title;
+    }
+
+    public void setInvitation_title(String invitation_title) {
+        this.invitation_title = invitation_title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getPlate() {
+        return plate;
+    }
+
+    public void setPlate(Integer plate) {
+        this.plate = plate;
+    }
+
+    public Integer getPost_user() {
+        return post_user;
+    }
+
+    public void setPost_user(Integer post_user) {
+        this.post_user = post_user;
+    }
+
+    String invitation_title;
+    String content;
+    Integer plate;
+    Integer post_user;
 }

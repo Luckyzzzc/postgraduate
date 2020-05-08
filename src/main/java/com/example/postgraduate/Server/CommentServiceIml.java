@@ -5,6 +5,8 @@ import com.example.postgraduate.POJO.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentServiceIml implements CommentService{
     @Autowired
@@ -23,5 +25,10 @@ public class CommentServiceIml implements CommentService{
     @Override
     public boolean addLike(Integer comment_id) {
         return commentMapper.addLike(comment_id);
+    }
+
+    @Override
+    public List<Comment> getInvitationComment(Integer invitation_id) {
+        return commentMapper.getInvitationComment(invitation_id);
     }
 }

@@ -1,7 +1,11 @@
 package com.example.postgraduate.Server;
 
+import com.example.postgraduate.POJO.Comment;
+import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface UserService {
@@ -15,6 +19,8 @@ public interface UserService {
 
     boolean addComment(Integer user_id);
 
+    List<User> findAll();
+
     User find(String username);
 
     User findById(Integer user_id);
@@ -24,4 +30,8 @@ public interface UserService {
     boolean addFollow(Integer user_id);
 
     boolean changeNickname(Integer user_id, String nickname);
+
+    List<Invitation> getAllInvitation(Integer user_id);
+
+    List<Comment> getAllComment(Integer user_id);
 }

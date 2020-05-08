@@ -1,13 +1,21 @@
 package com.example.postgraduate.POJO;
 
-import org.springframework.stereotype.Component;
+import io.swagger.annotations.Api;
 
-@Component
-public class school {
+@Api(value = "学校表")
+public class School {
     private Integer school_id;
     private String school_name;
     private String school_tag;
     private Integer province_id;
+
+    public School(){}
+
+    public School(String school_name, String school_tag, Integer province_id){
+        this.school_name = school_name;
+        this.school_tag = school_tag;
+        this.province_id = province_id;
+    }
 
     public Integer getSchool_id() {
         return school_id;

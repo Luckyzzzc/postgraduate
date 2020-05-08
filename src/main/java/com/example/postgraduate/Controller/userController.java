@@ -1,5 +1,7 @@
 package com.example.postgraduate.Controller;
 
+import com.example.postgraduate.POJO.Comment;
+import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import com.example.postgraduate.Server.UserService;
 import io.swagger.annotations.Api;
@@ -7,107 +9,203 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/User")
 @CrossOrigin
+@ResponseBody
 @Api(tags = "用户管理类的api文档")
 public class userController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/regist")
+    @PostMapping(value = "/regist",produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "用于添加用户的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", defaultValue = "admin", required = true),
-            @ApiImplicitParam(name = "password", value = "密码", defaultValue = "admin", required = true)
-    })
-    boolean regist(@RequestParam String username, @RequestParam String password){
-        if(userService.find(username) != null){
+    boolean regist(@RequestBody userRigistAndLogin userRigistAndLogin){
+        if(userService.find(userRigistAndLogin.getUsername()) != null){
             return false;
         }
-        User user = new User(username, password);
-        return userService.regist(user) != true;
+        User user = new User(userRigistAndLogin.getUsername(),userRigistAndLogin.getPassword());
+        return userService.regist(user);
     }
 
 
     @PostMapping(value = "/isban")
     @ApiOperation(value = "用于改变用户封禁状态的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true),
-            @ApiImplicitParam(name = "isBan", value = "封禁状态（1为封禁）", required = true)
-    })
-    boolean isBan(@RequestParam Integer user_id, @RequestParam Integer isBan){
-        return userService.userBan(user_id,isBan);
+    boolean isBan(@RequestBody changeDate changeDate){
+        return userService.userBan(changeDate.getUser_id(), (Integer)changeDate.getDate());
     }
 
     @PostMapping(value = "/changepassword")
     @ApiOperation(value = "用于修改用户密码的接口")
-    boolean changePassword(@RequestParam Integer user_id, @RequestParam String oldPassword, @RequestParam String newPassword){
-        return userService.changePassword(user_id,oldPassword,newPassword);
+    boolean changePassword(@RequestBody changePasswordTmp changePasswordTmp){
+        return userService.changePassword(changePasswordTmp.getUser_id(),changePasswordTmp.getOldPassword(),changePasswordTmp.getNewPassword());
     }
 
 
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
     @ApiOperation(value = "用于登录用户的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", defaultValue = "admin", required = true),
-            @ApiImplicitParam(name = "password", value = "密码", defaultValue = "admin", required = true)
-    })
-    boolean login(@RequestParam String username, @RequestParam String password){
-        return userService.find(username).getPassword().compareTo(password) == 0;
+    boolean login(@RequestBody userRigistAndLogin userRigistAndLogin){
+        return userService.find(userRigistAndLogin.getUsername()).getPassword().compareTo(userRigistAndLogin.getPassword()) == 0;
     }
 
-    @RequestMapping(value = "/addinvitation")
+    @PostMapping(value = "/addinvitation")
     @ApiOperation(value = "用于添加帖子的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true)
-    })
-    boolean addInvitation(@RequestParam Integer user_id){
+    boolean addInvitation(@RequestBody Integer user_id){
         return userService.addInvitation(user_id);
     }
 
-    @RequestMapping(value = "/addcomment")
+    @PostMapping(value = "/addcomment")
     @ApiOperation(value = "用于添加评论的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true)
-    })
-    boolean addComment(@RequestParam Integer user_id){
+    boolean addComment(@RequestBody Integer user_id){
         return userService.addComment(user_id);
     }
 
-    @RequestMapping(value = "/changesex")
+    @PostMapping(value = "/changesex")
     @ApiOperation(value = "用于更改性别的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true),
-            @ApiImplicitParam(name = "sex", value = "性别", defaultValue = "1", required = true)
-    })
-    boolean changeSex(@RequestParam Integer user_id, @RequestParam Integer sex){
-        return userService.changeSex(user_id, sex);
+    boolean changeSex(@RequestBody changeDate changeDate){
+        return userService.changeSex(changeDate.getUser_id(), (Integer) changeDate.getDate());
     }
 
-    @RequestMapping(value = "/addfollow")
+    @PostMapping(value = "/addfollow")
     @ApiOperation(value = "用于添加关注的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true)
-    })
-    boolean addFollow(@RequestParam Integer user_id){
+    boolean addFollow(@RequestBody Integer user_id){
         return userService.addFollow(user_id);
     }
 
-    @RequestMapping(value = "/changenickname")
+    @PostMapping(value = "/changenickname")
     @ApiOperation(value = "用于更改昵称的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", defaultValue = "1", required = true),
-            @ApiImplicitParam(name = "nickname", value = "昵称", defaultValue = "xxx", required = true)
-    })
-    boolean changeNickname(@RequestParam Integer user_id, @RequestParam String nickname){
-        return userService.changeNickname(user_id, nickname);
+    boolean changeNickname(@RequestBody changeDate changeDate){
+        return userService.changeNickname(changeDate.getUser_id(), (String) changeDate.getDate());
+    }
+
+    @PostMapping(value = "/findall")
+    @ApiOperation(value = "查询所有用户的接口")
+    List<User> findAll(){
+       return userService.findAll();
+    }
+
+    @PostMapping(value = "/findbyid")
+    @ApiOperation(value = "通过id查询用户")
+    User findById(@RequestBody Integer user_id){
+        return userService.findById(user_id);
+    }
+
+    @PostMapping(value = "/findbyname")
+    @ApiOperation(value = "通过用户名查询用户")
+    User findByName(@RequestBody String username){
+        return userService.find(username);
+    }
+
+    @PostMapping(value = "/getinvitation")
+    @ApiOperation(value = "获得所有文章")
+    List<Invitation> getAllInvitation(@RequestBody getDate getDate){
+        return userService.getAllInvitation(getDate.getUser_id());
+    }
+
+    @PostMapping(value = "/getcomment")
+    @ApiOperation(value = "获得所有评论")
+    List<Comment> getAllComment(@RequestBody getDate getDate){
+        return userService.getAllComment(getDate.getUser_id());
+    }
+
+}
+
+class userRigistAndLogin{
+    private String username;
+    private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+
+class changePasswordTmp{
+    public Integer user_id;
+    public String oldPassword;
+    public String newPassword;
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+}
+
+class changeDate{
+    Integer user_id;
+    Object date;
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public Object getDate() {
+        return date;
+    }
+
+    public void setDate(Object date) {
+        this.date = date;
+    }
+}
+
+class getDate{
+    private Integer user_id;
+    private Object index;
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public Object getIndex() {
+        return index;
+    }
+
+    public void setIndex(Object index) {
+        this.index = index;
     }
 }

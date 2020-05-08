@@ -1,9 +1,13 @@
 package com.example.postgraduate.Server;
 
 import com.example.postgraduate.Dao.UserMapper;
+import com.example.postgraduate.POJO.Comment;
+import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceIml implements UserService {
@@ -43,6 +47,11 @@ public class UserServiceIml implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
+    }
+
+    @Override
     public User find(String username) {
         return userMapper.find(username);
     }
@@ -65,6 +74,16 @@ public class UserServiceIml implements UserService {
     @Override
     public boolean changeNickname(Integer user_id, String nickname) {
         return userMapper.changeNickname(user_id,nickname);
+    }
+
+    @Override
+    public List<Invitation> getAllInvitation(Integer user_id) {
+        return userMapper.getAllInvitation(user_id);
+    }
+
+    @Override
+    public List<Comment> getAllComment(Integer user_id) {
+        return userMapper.getAllComment(user_id);
     }
 
 

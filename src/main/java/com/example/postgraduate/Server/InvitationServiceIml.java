@@ -5,6 +5,8 @@ import com.example.postgraduate.POJO.Invitation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InvitationServiceIml implements InvitationService{
     @Autowired
@@ -24,4 +26,20 @@ public class InvitationServiceIml implements InvitationService{
     public boolean addScan(Integer invitation_id) {
         return invitationMapper.addScan(invitation_id);
     }
+
+    @Override
+    public List<Invitation> getHotInvitation() {
+        return invitationMapper.getHotInvitation();
+    }
+
+    @Override
+    public List<Invitation> getInvitation() {
+        return invitationMapper.getInvitation();
+    }
+
+    @Override
+    public List<Invitation> getPlateInvitation(Integer plate) {
+        return invitationMapper.getPlateInvitation(plate);
+    }
+
 }

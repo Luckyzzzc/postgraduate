@@ -9,6 +9,14 @@ public class Like {
     private Integer invitation_id;
     private Integer user_id;
 
+    public Like(){}
+
+    public Like(Integer comment_id, Integer invitation_id, Integer user_id){
+        this.comment_id = comment_id;
+        this.invitation_id = invitation_id;
+        this.user_id = user_id;
+    }
+
     public Integer getLike_id() {
         return like_id;
     }

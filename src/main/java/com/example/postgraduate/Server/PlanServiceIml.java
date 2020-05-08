@@ -5,6 +5,8 @@ import com.example.postgraduate.POJO.Plan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlanServiceIml implements PlanService {
 
@@ -24,5 +26,10 @@ public class PlanServiceIml implements PlanService {
     @Override
     public boolean deletePlan(Integer plan_id) {
         return planMapper.deletePlan(plan_id);
+    }
+
+    @Override
+    public List<Plan> getAllPlan(Integer user_id) {
+        return planMapper.getAllPlan(user_id);
     }
 }

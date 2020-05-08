@@ -5,11 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Api(value = "用户表")
 public class User {
-    @ApiModelProperty(value = "用户id")
     private Integer user_id;
-    @ApiModelProperty(value = "用户名",required = true)
     private String username;
-    @ApiModelProperty(value = "密码")
     private String password;
     private String phone;
     private String nickname;
@@ -132,4 +129,5 @@ public class User {
     public String getHead_sculpture() {
         return head_sculpture;
     }
+
 }

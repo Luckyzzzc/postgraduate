@@ -1,11 +1,10 @@
 package com.example.postgraduate.Dao;
 
 import com.example.postgraduate.POJO.Plan;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -19,4 +18,7 @@ public interface PlanMapper {
 
     @Delete("DELETE FROM `postgraduate`.`plan` WHERE `plan`.`plan_id` = #{plan_id}")
     boolean deletePlan(Integer plan_id);
+
+    @Select("SELECT * FROM `postgraduate`.`plan` WHERE `plan`.`user_id` = #{user_id};")
+    List<Plan> getAllPlan(Integer user_id);
 }
