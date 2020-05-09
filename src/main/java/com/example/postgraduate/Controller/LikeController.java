@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping(value = "/like")
 @CrossOrigin
@@ -26,8 +28,8 @@ public class LikeController {
 
     @PostMapping("/deletelike")
     @ApiOperation("/用于删除点赞信息")
-    boolean deleteLike(@RequestBody Integer like_id){
-        return likeService.deleteLike(like_id);
+    boolean deleteLike(@RequestBody Map<String, Object> map){
+        return likeService.deleteLike((Integer)map.get("like_id"));
     }
 }
 

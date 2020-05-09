@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/school")
@@ -28,8 +29,8 @@ public class SchoolController {
 
     @PostMapping("/deleteschool")
     @ApiOperation(value = "用于删除学校")
-    boolean deleteSchool(@RequestBody Integer school_id){
-        return schoolService.deleteSchool(school_id);
+    boolean deleteSchool(@RequestBody Map<String, Object> map){
+        return schoolService.deleteSchool((Integer)map.get("school_id"));
     }
 
     @PostMapping("/getallschool")

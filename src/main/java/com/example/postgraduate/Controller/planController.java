@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/plan")
@@ -36,14 +37,14 @@ public class planController {
 
     @PostMapping("/deleteplan")
     @ApiOperation(value = "用于删除计划的接口")
-    boolean deletePlan(@RequestBody Integer plan_id){
-        return planService.deletePlan(plan_id);
+    boolean deletePlan(@RequestBody Map<String, Object> map){
+        return planService.deletePlan((Integer)map.get("post_id"));
     }
 
     @PostMapping("/getPlan")
     @ApiOperation(value = "用于获得用户计划")
-    List<Plan> getAllPlan(Integer user_id){
-        return planService.getAllPlan(user_id);
+    List<Plan> getAllPlan(Map<String, Object> map){
+        return planService.getAllPlan((Integer)map.get("user_id"));
     }
 }
 

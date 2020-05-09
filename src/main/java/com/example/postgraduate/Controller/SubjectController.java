@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Map;
 
 @ResponseBody
 @Controller
@@ -22,14 +23,14 @@ public class SubjectController {
 
     @PostMapping(value = "/addsubject")
     @ApiOperation(value = "用于添加学科")
-    boolean addSubject(@RequestBody String subject_name){
-        return subjectService.addSubject(subject_name);
+    boolean addSubject(@RequestBody Map<String, Object> map){
+        return subjectService.addSubject((String)map.get("subject_name"));
     }
 
     @PostMapping(value = "/deletesubject")
     @ApiOperation(value = "用于删除学科")
-    boolean deleteSubject(Integer subject_id){
-        return subjectService.deleteSubject(subject_id);
+    boolean deleteSubject(Map<String, Object> map){
+        return subjectService.deleteSubject((Integer)map.get("subject_id"));
     }
 
     @PostMapping(value = "/getallsubject")

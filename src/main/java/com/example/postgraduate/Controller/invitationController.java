@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/invitation")
@@ -39,8 +40,8 @@ public class invitationController {
 
     @PostMapping(value = "/addscan")
     @ApiOperation(value = "用于增加帖子浏览数的接口")
-    boolean addScan(@RequestBody Integer invitation_id){
-        return invitationService.addScan(invitation_id);
+    boolean addScan(@RequestBody Map<String, Object> map){
+        return invitationService.addScan((Integer)map.get("invitation_id"));
     }
 
     @PostMapping(value = "/gethot")
@@ -57,8 +58,8 @@ public class invitationController {
 
     @PostMapping(value = "/getplateinvition")
     @ApiOperation(value = "根据板块获得帖子")
-    List<Invitation> getPlateInvitation(@RequestBody Integer plate){
-        return invitationService.getPlateInvitation(plate);
+    List<Invitation> getPlateInvitation(@RequestBody Map<String, Object> map){
+        return invitationService.getPlateInvitation((Integer)map.get("plate"));
     }
 }
 
