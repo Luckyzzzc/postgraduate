@@ -16,4 +16,6 @@ public interface PlanService {
     boolean deletePlan(Integer plan_id);
 
     List<Plan> getAllPlan(Integer user_id);
+
+    Plan getPlanById(Integer plan_id);
 }

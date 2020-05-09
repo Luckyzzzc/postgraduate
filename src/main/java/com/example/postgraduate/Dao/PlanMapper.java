@@ -21,4 +21,7 @@ public interface PlanMapper {
 
     @Select("SELECT * FROM `postgraduate`.`plan` WHERE `plan`.`user_id` = #{user_id};")
     List<Plan> getAllPlan(Integer user_id);
+
+    @Select("SELECT * FROM `postgraduate`.`plan` WHERE `plan`.`plan_id` = #{plan_id};")
+    Plan getPlanById(Integer plan_id);
 }

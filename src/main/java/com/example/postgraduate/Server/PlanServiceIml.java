@@ -32,4 +32,9 @@ public class PlanServiceIml implements PlanService {
     public List<Plan> getAllPlan(Integer user_id) {
         return planMapper.getAllPlan(user_id);
     }
+
+    @Override
+    public Plan getPlanById(Integer plan_id) {
+        return planMapper.getPlanById(plan_id);
+    }
 }

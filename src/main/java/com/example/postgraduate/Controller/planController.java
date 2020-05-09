@@ -24,9 +24,10 @@ public class planController {
 
     @PostMapping("/addplan")
     @ApiOperation(value = "用于添加用户计划的接口")
-    boolean addPlan(@RequestBody postPlan postPlan){
+    Plan addPlan(@RequestBody postPlan postPlan){
         Plan plan = new Plan(postPlan.getUser_id(), postPlan.getPlan_type(),postPlan.getPlan_content(), postPlan.getDate());
-        return planService.addPlan(plan);
+        planService.addPlan(plan);
+        return plan;
     }
 
     @PostMapping("/changestatus")
@@ -43,8 +44,14 @@ public class planController {
 
     @PostMapping("/getPlan")
     @ApiOperation(value = "用于获得用户计划")
-    List<Plan> getAllPlan(Map<String, Object> map){
+    List<Plan> getAllPlan(@RequestBody Map<String, Object> map){
         return planService.getAllPlan((Integer)map.get("user_id"));
+    }
+
+    @PostMapping("/getplanbyid")
+    @ApiOperation(value = "通过id获得计划")
+    Plan getPlanById(@RequestBody Map<String, Object> map){
+        return planService.getPlanById((Integer)map.get("plan_id"));
     }
 }
 
