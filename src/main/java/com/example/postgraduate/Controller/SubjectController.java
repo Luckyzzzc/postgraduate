@@ -15,7 +15,7 @@ import java.util.Map;
 @ResponseBody
 @Controller
 @CrossOrigin
-@RequestMapping(value = "/subject")
+@RequestMapping(value = "/subject",produces = "application/json;charset=utf-8")
 @Api(tags = "学科类的api文档")
 public class SubjectController {
     @Autowired

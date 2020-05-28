@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/invitation")
+@RequestMapping(value = "/invitation",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "发帖类的api文档")

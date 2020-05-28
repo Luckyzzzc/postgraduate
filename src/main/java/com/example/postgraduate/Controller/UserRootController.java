@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/userroot")
+@RequestMapping(value = "/userroot",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "权限管理类的api文档")

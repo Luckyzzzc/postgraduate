@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/like")
+@RequestMapping(value = "/like",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "点赞的api文档")

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/plan")
+@RequestMapping(value = "/plan",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "计划类的api文档")

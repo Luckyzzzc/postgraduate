@@ -13,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/comment")
+@RequestMapping(value = "/comment",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "评论类的api文档")
@@ -45,8 +46,8 @@ public class commentController {
 
     @PostMapping("/getinvitationcomment")
     @ApiOperation(value = "用于获得某个帖子的评论")
-    List<Comment> getInvitationComment(Integer invitation_id){
-        return commentService.getInvitationComment(invitation_id);
+    List<Comment> getInvitationComment(@RequestBody HashMap<String, Object> map){
+        return commentService.getInvitationComment((Integer)map.get("invitation_id") );
     }
 }
 

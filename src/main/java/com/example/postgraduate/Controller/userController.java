@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/User",consumes = "application/json", produces = "application/json")
+@RequestMapping(value = "/User",consumes = "application/json",produces = "application/json;charset=utf-8")
 @CrossOrigin
 @ResponseBody
 @Api(tags = "用户管理类的api文档")
