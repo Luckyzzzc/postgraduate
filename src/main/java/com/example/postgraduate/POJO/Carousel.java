@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Carousel {
-	private  Integer id;
+	private  Integer carousel_id;
 	private  String url;
 	private  String title;
 	private  String content;
@@ -17,8 +17,7 @@ public class Carousel {
 		
 	}
 	
-	public Carousel(Integer id,String url, String title,String content) {
-		this.id = id;
+	public Carousel(String url, String title,String content) {
 		this.url = url;
 		this.title = title;
 		this.content =content;
@@ -27,14 +26,6 @@ public class Carousel {
 
         this.create_time = formatter.format(date);
 		
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getUrl() {
@@ -67,6 +58,14 @@ public class Carousel {
 
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
+	}
+
+	public Integer getCarousel_id() {
+		return carousel_id;
+	}
+
+	public void setCarousel_id(Integer carousel_id) {
+		this.carousel_id = carousel_id;
 	}
 	
 }
