@@ -28,7 +28,7 @@ public class invitationController {
     @PostMapping(value = "/post")
     @ApiOperation(value = "用于添加帖子的接口")
     boolean post(@RequestBody postInvitation postInvitation){
-        Invitation invitation = new Invitation(postInvitation.getInvitation_title(),postInvitation.getContent(),postInvitation.getPlate(),postInvitation.getPost_user());
+        Invitation invitation = new Invitation(postInvitation.getInvitation_title(),postInvitation.getContent(),postInvitation.getPlate(),postInvitation.getPost_user(),postInvitation.getInvitation_type(),postInvitation.getSchool_id());
         return invitationService.post(invitation);
     }
 
@@ -117,8 +117,30 @@ class postInvitation{
         this.post_user = post_user;
     }
 
-    String invitation_title;
+    
+    
+    public Integer getInvitation_type() {
+		return invitation_type;
+	}
+
+	public void setInvitation_type(Integer invitation_type) {
+		this.invitation_type = invitation_type;
+	}
+
+	public Integer getSchool_id() {
+		return school_id;
+	}
+
+	public void setSchool_id(Integer school_id) {
+		this.school_id = school_id;
+	}
+
+
+
+	String invitation_title;
     String content;
     Integer plate;
     Integer post_user;
+    Integer invitation_type;
+    Integer school_id;
 }
