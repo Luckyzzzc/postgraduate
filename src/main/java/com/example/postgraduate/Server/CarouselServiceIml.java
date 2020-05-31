@@ -3,10 +3,12 @@ package com.example.postgraduate.Server;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.postgraduate.Dao.CarouselMapper;
 import com.example.postgraduate.POJO.Carousel;
 
+@Service
 public class CarouselServiceIml implements CarouselService {
 
 	@Autowired
