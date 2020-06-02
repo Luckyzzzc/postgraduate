@@ -16,10 +16,13 @@ public class Invitation {
     private Integer post_user;
     private String update_time;
     private String create_time;
+    private Integer invitation_type;
+    private Integer school_id;
+    
 
     public Invitation(){}
 
-    public Invitation(String invitation_title, String content, Integer plate, Integer post_user){
+    public Invitation(String invitation_title, String content, Integer plate, Integer post_user,Integer school_id,Integer invitation_type){
         this.invitation_title = invitation_title;
         this.content = content;
         this.plate = plate;
@@ -32,6 +35,15 @@ public class Invitation {
 
         this.create_time = formatter.format(date);
         this.update_time = formatter.format(date);
+        
+        if(school_id ==null) {
+        	school_id = 0;
+        }
+        this.school_id =school_id;
+        if(invitation_type == null) {
+        	invitation_type = 0;
+        }
+        this.invitation_type = invitation_type;
     };
 
     public Integer getInvitation_id() {

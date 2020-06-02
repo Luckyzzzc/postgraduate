@@ -12,8 +12,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface InvitationMapper {
-    @Insert("INSERT INTO `postgraduate`.`invitation` (`invitation_title`, `content`, `plate`, `invitation_status`, `scan_number`, `post_user`, `update_time`, `create_time`) " +
-            "VALUES (#{invitation_title}, #{content}, #{plate}, #{invitation_status}, #{scan_number}, #{post_user}, #{update_time}, #{create_time});")
+    @Insert("INSERT INTO `postgraduate`.`invitation` (`invitation_title`, `content`, `plate`, `invitation_status`, `scan_number`, `post_user`, `update_time`, `create_time`,`invitation_type`,`school_id`) " +
+            "VALUES (#{invitation_title}, #{content}, #{plate}, #{invitation_status}, #{scan_number}, #{post_user}, #{update_time}, #{create_time},#{invitation_type} ,#{school_id});")
     boolean post(Invitation invitation);
 
     @Update("UPDATE `postgraduate`.`invitation` SET `invitation`.`invitation_status` = #{invitation_status} WHERE `invitation`.`invitation_id` = #{invitation_id};")
