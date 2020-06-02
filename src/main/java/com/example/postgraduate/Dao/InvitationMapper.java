@@ -25,9 +25,12 @@ public interface InvitationMapper {
     @Select("SELECT * FROM `postgraduate`.`invitation` ORDER BY `invitation`.`scan_number` desc;")
     List<Invitation> getHotInvitation();
 
-    @Select("SELECT * FROM `postgraduate`.`invitation`;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` limit 0,10;")
     List<Invitation> getInvitation();
 
     @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`plate` = #{plate};")
     List<Invitation> getPlateInvitation(Integer plate);
+
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_title` LIKE '%' #{condition} '%'")
+    List<Invitation> queryInvitation(String condition);
 }

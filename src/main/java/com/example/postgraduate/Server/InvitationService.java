@@ -18,4 +18,6 @@ public interface InvitationService {
     List<Invitation> getInvitation();
 
     List<Invitation> getPlateInvitation(Integer plate);
+
+    List<Invitation> queryInvitation(String condition);
 }

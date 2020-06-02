@@ -42,4 +42,9 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.getPlateInvitation(plate);
     }
 
+    @Override
+    public List<Invitation> queryInvitation(String condition) {
+        return invitationMapper.queryInvitation(condition);
+    }
+
 }
