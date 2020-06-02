@@ -25,4 +25,5 @@ public class UserRootServiceIml implements UserRootService {
     public boolean deleteRoot(Integer root_id) {
         return userRootMapper.deleteRoot(root_id);
     }
+    
 }
