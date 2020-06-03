@@ -33,4 +33,7 @@ public interface InvitationMapper {
 
     @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_title` LIKE '%' #{condition} '%'")
     List<Invitation> queryInvitation(String condition);
+
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`school_id` = #{school_id}")
+    List<Invitation> getInvitationBySchool(Integer school_id);
 }

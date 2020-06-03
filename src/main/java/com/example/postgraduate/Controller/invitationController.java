@@ -62,6 +62,12 @@ public class invitationController {
         return invitationService.getPlateInvitation((Integer)map.get("plate"));
     }
 
+    @PostMapping(value = "/getinvitationbyschool")
+    @ApiOperation(value = "根据学校获得帖子")
+    List<Invitation> getInvitationBySchool(@RequestBody Map<String, Object> map){
+        return invitationService.getInvitationBySchool((Integer)map.get("school_id"));
+    }
+
     @PostMapping(value = "/query")
     @ApiOperation(value = "帖子查询")
     List<Invitation> queryInvitation(@RequestBody Map<String, Object> map){

@@ -47,4 +47,9 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.queryInvitation(condition);
     }
 
+    @Override
+    public List<Invitation> getInvitationBySchool(Integer school_id) {
+        return invitationMapper.getInvitationBySchool(school_id);
+    }
+
 }
