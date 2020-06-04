@@ -67,5 +67,11 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.updateInvitation(invitation_id,title,content,plate);
     }
 
+	@Override
+	public List<Integer> getAllPlateList() {
+		// TODO Auto-generated method stub
+		return invitationMapper.getAllInvationPlateType();
+	}
+
 
 }

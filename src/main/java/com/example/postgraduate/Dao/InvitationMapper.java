@@ -42,5 +42,7 @@ public interface InvitationMapper {
 
     @Update("UPDATE `postgraduate`.`invitation` SET invitation_title = #{title}, content = #{content}, plate = #{plate} WHERE invitation_id = #{invitation_id};")
     boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate);
-
+    
+    @Select("SELECT DISTINCT `invitation`.`plate` FROM `postgraduate`.`invitation`")
+    List<Integer> getAllInvationPlateType();
 }

@@ -28,4 +28,6 @@ public interface InvitationService {
     List<Invitation> getInvitationById(Integer invitation_id);
 
     boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate);
+    
+    List<Integer> getAllPlateList();
 }

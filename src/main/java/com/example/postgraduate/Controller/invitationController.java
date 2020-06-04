@@ -55,6 +55,12 @@ public class invitationController {
     List<Invitation> getInvitation(){
         return invitationService.getInvitation();
     }
+    
+    @PostMapping(value = "/getPlateTypes")
+    @ApiOperation(value = "获取全部板块信息")
+    List<Integer> getAllInvitationPlates(){
+    	return invitationService.getAllPlateList();
+    }
 
     @PostMapping(value = "/getplateinvition")
     @ApiOperation(value = "根据板块获得帖子")
@@ -80,17 +86,19 @@ public class invitationController {
         return invitationService.deleteInvitation((Integer) map.get("invitation_id"));
     }
 
-    @PostMapping(value = "getinvitationbyid")
+    @PostMapping(value = "/getinvitationbyid")
     @ApiOperation(value = "根据id获得帖子")
     List<Invitation> getInvitationById(@RequestBody Map<String, Object> map){
         return invitationService.getInvitationById((Integer) map.get("invitation_id"));
     }
 
-    @PostMapping(value = "update")
+    @PostMapping(value = "/update")
     @ApiOperation(value = "修改帖子内容")
     boolean updateInvitation(UpdateInvitation updateInvitation){
         return invitationService.updateInvitation(updateInvitation.getId(),updateInvitation.getTitle(),updateInvitation.getContent(),updateInvitation.getPlate());
     }
+    
+   
 }
 
 class changeInvitation{
