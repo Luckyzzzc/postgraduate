@@ -31,4 +31,24 @@ public class CommentServiceIml implements CommentService{
     public List<Comment> getInvitationComment(Integer invitation_id) {
         return commentMapper.getInvitationComment(invitation_id);
     }
+
+    @Override
+    public boolean deleteComment(Integer comment_id) {
+        return commentMapper.deleteComment(comment_id);
+    }
+
+    @Override
+    public List<Comment> getAllComment() {
+        return commentMapper.getAllComment();
+    }
+
+    @Override
+    public List<Comment> getCommentByUser(Integer comment_user) {
+        return commentMapper.getCommentByUser(comment_user);
+    }
+
+    @Override
+    public List<Comment> getCommentById(Integer comment_id) {
+        return commentMapper.getCommentById(comment_id);
+    }
 }

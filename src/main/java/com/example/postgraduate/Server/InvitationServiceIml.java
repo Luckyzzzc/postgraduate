@@ -52,4 +52,20 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.getInvitationBySchool(school_id);
     }
 
+    @Override
+    public Boolean deleteInvitation(Integer invitation_id) {
+        return invitationMapper.deleteInvitation(invitation_id);
+    }
+
+    @Override
+    public List<Invitation> getInvitationById(Integer invitation_id) {
+        return invitationMapper.getInvitationById(invitation_id);
+    }
+
+    @Override
+    public boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate) {
+        return invitationMapper.updateInvitation(invitation_id,title,content,plate);
+    }
+
+
 }

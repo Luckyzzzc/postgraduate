@@ -1,10 +1,7 @@
 package com.example.postgraduate.Dao;
 
 import com.example.postgraduate.POJO.Invitation;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,4 +33,14 @@ public interface InvitationMapper {
 
     @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`school_id` = #{school_id}")
     List<Invitation> getInvitationBySchool(Integer school_id);
+
+    @Delete("DELETE FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_id` = #{invitation_id}")
+    Boolean deleteInvitation(Integer invitation_id);
+
+    @Select("SELECT FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_id` = #{invitation_id}")
+    List<Invitation> getInvitationById(Integer invitation_id);
+
+    @Update("UPDATE `postgraduate`.`invitation` SET invitation_title = #{title}, content = #{content}, plate = #{plate} WHERE invitation_id = #{invitation_id};")
+    boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate);
+
 }

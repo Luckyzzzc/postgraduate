@@ -14,4 +14,12 @@ public interface CommentService {
     boolean addLike(Integer comment_id);
 
     List<Comment> getInvitationComment(Integer invitation_id);
+
+    boolean deleteComment(Integer comment_id);
+
+    List<Comment> getAllComment();
+
+    List<Comment> getCommentByUser(Integer comment_user);
+
+    List<Comment> getCommentById(Integer comment_id);
 }

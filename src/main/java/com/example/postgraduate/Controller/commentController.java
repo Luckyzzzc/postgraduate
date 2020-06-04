@@ -49,6 +49,30 @@ public class commentController {
     List<Comment> getInvitationComment(@RequestBody HashMap<String, Object> map){
         return commentService.getInvitationComment((Integer)map.get("invitation_id") );
     }
+
+    @PostMapping("deletecomment")
+    @ApiOperation(value = "删除某个评论")
+    boolean deleteComment(@RequestBody HashMap<String, Object> map){
+        return commentService.deleteComment((Integer)map.get("comment_id"));
+    }
+
+    @PostMapping("getallcomment")
+    @ApiOperation(value = "获取所有评论根据帖子序号排列")
+    List<Comment> getAllComment(){
+        return commentService.getAllComment();
+    }
+
+    @PostMapping("getcommentbyuser")
+    @ApiOperation(value = "获取某用户所有评论")
+    List<Comment> getCommentByUser(@RequestBody HashMap<String, Object> map){
+        return commentService.getCommentByUser((Integer)map.get("comment_user"));
+    }
+
+    @PostMapping("getcommentbyid")
+    @ApiOperation(value = "根据评论id获得评论")
+    List<Comment> getCommentById(@RequestBody HashMap<String, Object> map){
+        return commentService.getCommentById((Integer)map.get("comment_id"));
+    }
 }
 
 class changeComment{
