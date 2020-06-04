@@ -1,10 +1,7 @@
 package com.example.postgraduate.Dao;
 
 import com.example.postgraduate.POJO.Comment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +21,16 @@ public interface CommentMapper {
 
     @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_invitation` = #{invitation_id}")
     List<Comment> getInvitationComment(Integer invitation_id);
+
+    @Delete("DELETE FROM `postgraduate`.`comment` WHERE `comment`.`comment_id` = #{comment_id};")
+    boolean deleteComment(Integer comment_id);
+
+    @Select("SELECT * FROM `postgraduate`.`comment` GROUP BY `comment`.`comment_invitation`;")
+    List<Comment> getAllComment();
+
+    @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_user` = #{comment_user};")
+    List<Comment> getCommentByUser(Integer comment_user);
+
+    @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_id` = #{comment_id};")
+    List<Comment> getCommentById(Integer comment_id);
 }

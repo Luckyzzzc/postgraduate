@@ -1,6 +1,7 @@
 package com.example.postgraduate.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,14 +42,14 @@ public class carouselController {
 	
 	@PostMapping("/deleteCarousel")
 	@ApiOperation(value = "用于删除轮播图")
-	public boolean deleteCarousel(@RequestBody Integer carousel_id) {
-		return carouselService.deleteCarousel(carousel_id);
+	public boolean deleteCarousel(@RequestBody Map<String, Object> map) {
+		return carouselService.deleteCarousel((Integer)map.get("carousel_id"));
 	}
 	
 	@PostMapping("/getCarousel")
 	@ApiOperation(value = "用于获得指定id的轮播图")
-	public Carousel getCarousel(@RequestBody Integer carousel_id) {
-		return carouselService.getCarousel(carousel_id);
+	public Carousel getCarousel(@RequestBody Map<String, Object> map) {
+		return carouselService.getCarousel((Integer)map.get("carousel_id"));
 	}
 	
 	@PostMapping("/getAllCarousels")

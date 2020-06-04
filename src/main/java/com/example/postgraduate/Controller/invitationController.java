@@ -61,6 +61,36 @@ public class invitationController {
     List<Invitation> getPlateInvitation(@RequestBody Map<String, Object> map){
         return invitationService.getPlateInvitation((Integer)map.get("plate"));
     }
+
+    @PostMapping(value = "/getinvitationbyschool")
+    @ApiOperation(value = "根据学校获得帖子")
+    List<Invitation> getInvitationBySchool(@RequestBody Map<String, Object> map){
+        return invitationService.getInvitationBySchool((Integer)map.get("school_id"));
+    }
+
+    @PostMapping(value = "/query")
+    @ApiOperation(value = "帖子查询")
+    List<Invitation> queryInvitation(@RequestBody Map<String, Object> map){
+        return invitationService.queryInvitation((String)map.get("invitation_title"));
+    }
+
+    @PostMapping(value = "/delete")
+    @ApiOperation(value = "删除帖子")
+    Boolean deleteInvitation(@RequestBody Map<String, Object> map){
+        return invitationService.deleteInvitation((Integer) map.get("invitation_id"));
+    }
+
+    @PostMapping(value = "getinvitationbyid")
+    @ApiOperation(value = "根据id获得帖子")
+    List<Invitation> getInvitationById(@RequestBody Map<String, Object> map){
+        return invitationService.getInvitationById((Integer) map.get("invitation_id"));
+    }
+
+    @PostMapping(value = "update")
+    @ApiOperation(value = "修改帖子内容")
+    boolean updateInvitation(UpdateInvitation updateInvitation){
+        return invitationService.updateInvitation(updateInvitation.getId(),updateInvitation.getTitle(),updateInvitation.getContent(),updateInvitation.getPlate());
+    }
 }
 
 class changeInvitation{
@@ -143,4 +173,43 @@ class postInvitation{
     Integer post_user;
     Integer invitation_type;
     Integer school_id;
+}
+
+class UpdateInvitation{
+    Integer id;
+    String title;
+    String content;
+    Integer plate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getPlate() {
+        return plate;
+    }
+
+    public void setPlate(Integer plate) {
+        this.plate = plate;
+    }
 }

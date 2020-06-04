@@ -18,7 +18,22 @@ public class Invitation {
     private String create_time;
     private Integer invitation_type;
     private Integer school_id;
-    
+
+    public Integer getInvitation_type() {
+        return invitation_type;
+    }
+
+    public void setInvitation_type(Integer invitation_type) {
+        this.invitation_type = invitation_type;
+    }
+
+    public Integer getSchool_id() {
+        return school_id;
+    }
+
+    public void setSchool_id(Integer school_id) {
+        this.school_id = school_id;
+    }
 
     public Invitation(){}
 

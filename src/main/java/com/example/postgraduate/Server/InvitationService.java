@@ -18,4 +18,14 @@ public interface InvitationService {
     List<Invitation> getInvitation();
 
     List<Invitation> getPlateInvitation(Integer plate);
+
+    List<Invitation> queryInvitation(String condition);
+
+    List<Invitation> getInvitationBySchool(Integer school_id);
+
+    Boolean deleteInvitation(Integer invitation_id);
+
+    List<Invitation> getInvitationById(Integer invitation_id);
+
+    boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate);
 }
