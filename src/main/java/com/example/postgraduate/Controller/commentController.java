@@ -1,12 +1,9 @@
 package com.example.postgraduate.Controller;
 
 import com.example.postgraduate.POJO.Comment;
-import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.Server.CommentService;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;

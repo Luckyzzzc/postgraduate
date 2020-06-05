@@ -25,7 +25,7 @@ public interface CommentMapper {
     @Delete("DELETE FROM `postgraduate`.`comment` WHERE `comment`.`comment_id` = #{comment_id};")
     boolean deleteComment(Integer comment_id);
 
-    @Select("SELECT * FROM `postgraduate`.`comment` GROUP BY `comment`.`comment_invitation`;")
+    @Select("SELECT * FROM `postgraduate`.`comment` ORDER BY `comment`.`comment_invitation` ASC;")
     List<Comment> getAllComment();
 
     @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_user` = #{comment_user};")
