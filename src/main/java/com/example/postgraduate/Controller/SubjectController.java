@@ -38,4 +38,10 @@ public class SubjectController {
     List<Subject> getAllSubjcet(){
         return subjectService.getAllSubject();
     }
+    
+    @PostMapping(value = "/getsubjectbyid")
+    @ApiOperation(value = "按照学科id获得学科")
+    Subject getSubjectById(Integer id) {
+    	return subjectService.getSubjectById(id);
+    }
 }

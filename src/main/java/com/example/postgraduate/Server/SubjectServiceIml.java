@@ -27,4 +27,10 @@ public class SubjectServiceIml implements SubjectService{
     public List<Subject> getAllSubject() {
         return subjectMapper.getAllSubject();
     }
+
+	@Override
+	public Subject getSubjectById(Integer subject_id) {
+		// TODO Auto-generated method stub
+		return subjectMapper.getSubjectById(subject_id);
+	}
 }

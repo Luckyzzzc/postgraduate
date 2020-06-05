@@ -29,32 +29,32 @@ public class PlateController {
 	
 	@PostMapping("/addplate")
     @ApiOperation(value = "用于添加分区的接口")
-	public Boolean  addPlate(String name){
+	Boolean  addPlate(String name){
         Plate plate = new Plate(name);
         return plateService.addPlate(plate);
     }
 	
 	@PostMapping("/changeplatename")
     @ApiOperation(value = "用于改变分区名称的接口")
-    public boolean changeStatus(@RequestBody Plate changePlate){
+    boolean changeStatus(@RequestBody Plate changePlate){
         return plateService.changeName(changePlate.getId(),changePlate.getName());
     }
 
     @PostMapping("/deleteplate")
     @ApiOperation(value = "用于删除分区的接口")
-    public boolean deletePlan(Integer id){
+    boolean deletePlan(Integer id){
         return plateService.deletePlate(id);
     }
 
     @PostMapping("/getPlate")
     @ApiOperation(value = "用于获得所有分区")
-    public List<Plate> getAllPlate(){
+    List<Plate> getAllPlate(){
         return plateService.getAllPlates();
     }
 
     @PostMapping("/getplanbyid")
     @ApiOperation(value = "通过id获得分区")
-    public Plate getPlateById(Integer id){
+    Plate getPlateById(Integer id){
         return plateService.getPlateById(id);
     }
 }
