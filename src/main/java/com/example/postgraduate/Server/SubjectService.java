@@ -14,4 +14,6 @@ public interface SubjectService {
     Boolean deleteSubject(Integer subject_id);
 
     List<Subject> getAllSubject();
+    
+    Subject getSubjectById(Integer subject_id);
 }

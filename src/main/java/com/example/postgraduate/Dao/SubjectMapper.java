@@ -20,4 +20,7 @@ public interface SubjectMapper {
 
     @Select("SELECT * FROM `postgraduate`.`subject`;")
     List<Subject> getAllSubject();
+    
+    @Select("SELECT *  FROM `postgraduate`.`subject` WHERE `subject`.`subject_id` = #{subject_id}")
+    Subject getSubjectById(Integer subject_id);
 }
