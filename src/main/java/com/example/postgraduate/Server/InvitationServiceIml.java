@@ -2,6 +2,8 @@ package com.example.postgraduate.Server;
 
 import com.example.postgraduate.Dao.InvitationMapper;
 import com.example.postgraduate.POJO.Invitation;
+import com.example.postgraduate.POJO.PlateCounts;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,6 +74,9 @@ public class InvitationServiceIml implements InvitationService{
 		// TODO Auto-generated method stub
 		return invitationMapper.getAllInvationPlateType();
 	}
-
+	
+	public List<PlateCounts> countinvitationbyplate(){
+		return invitationMapper.countinvitationbyplate();
+	}
 
 }

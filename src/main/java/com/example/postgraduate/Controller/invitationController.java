@@ -1,6 +1,7 @@
 package com.example.postgraduate.Controller;
 
 import com.example.postgraduate.POJO.Invitation;
+import com.example.postgraduate.POJO.PlateCounts;
 import com.example.postgraduate.Server.InvitationService;
 
 import io.swagger.annotations.Api;
@@ -96,6 +97,12 @@ public class invitationController {
     @ApiOperation(value = "修改帖子内容")
     boolean updateInvitation(UpdateInvitation updateInvitation){
         return invitationService.updateInvitation(updateInvitation.getId(),updateInvitation.getTitle(),updateInvitation.getContent(),updateInvitation.getPlate());
+    }
+    
+    @PostMapping(value ="/countinvitationbyplate")
+    @ApiOperation(value = "根据板块类型统计帖子数量")
+    List<PlateCounts> countinvitationbyplate(){
+    	return invitationService.countinvitationbyplate();
     }
     
    

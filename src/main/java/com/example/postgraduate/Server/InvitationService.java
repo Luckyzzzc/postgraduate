@@ -1,6 +1,8 @@
 package com.example.postgraduate.Server;
 
 import com.example.postgraduate.POJO.Invitation;
+import com.example.postgraduate.POJO.PlateCounts;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,4 +32,6 @@ public interface InvitationService {
     boolean updateInvitation(Integer invitation_id, String title, String content, Integer plate);
     
     List<Integer> getAllPlateList();
+    
+    List<PlateCounts> countinvitationbyplate();
 }

@@ -1,10 +1,13 @@
 package com.example.postgraduate.Dao;
 
 import com.example.postgraduate.POJO.Invitation;
+import com.example.postgraduate.POJO.PlateCounts;
+
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -45,4 +48,12 @@ public interface InvitationMapper {
     
     @Select("SELECT DISTINCT `invitation`.`plate` FROM `postgraduate`.`invitation`")
     List<Integer> getAllInvationPlateType();
+    
+    @Select("SELECT `postgraduate`.`invitation` .`plate`,`postgraduate`.`plate`.`name`,"
+    		+ "COUNT(`postgraduate`.`invitation` .`invitation_id`) AS `counts`" + 
+    		"FROM  `postgraduate`.`invitation` left join `postgraduate`.`plate`"
+    		+ " on `postgraduate`.`invitation`.`plate` = `postgraduate`.`plate` .`id`"
+    		+ "group by(`postgraduate`.`invitation`.`plate`)")
+    List<PlateCounts> countinvitationbyplate();
+    
 }
