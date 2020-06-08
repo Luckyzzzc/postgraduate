@@ -40,7 +40,7 @@ public class invitationController {
     }
 
     @PostMapping(value = "/addscan")
-    @ApiOperation(value = "用于增加帖子浏览数的接口")
+    @ApiOperation(value = "用于增加帖子浏览数的接口[参数:invitation_id]")
     boolean addScan(@RequestBody Map<String, Object> map){
         return invitationService.addScan((Integer)map.get("invitation_id"));
     }
@@ -64,31 +64,31 @@ public class invitationController {
     }
 
     @PostMapping(value = "/getplateinvition")
-    @ApiOperation(value = "根据板块获得帖子")
+    @ApiOperation(value = "根据板块获得帖子[参数:plate]")
     List<Invitation> getPlateInvitation(@RequestBody Map<String, Object> map){
         return invitationService.getPlateInvitation((Integer)map.get("plate"));
     }
 
     @PostMapping(value = "/getinvitationbyschool")
-    @ApiOperation(value = "根据学校获得帖子")
+    @ApiOperation(value = "根据学校获得帖子[参数:school_id]")
     List<Invitation> getInvitationBySchool(@RequestBody Map<String, Object> map){
         return invitationService.getInvitationBySchool((Integer)map.get("school_id"));
     }
 
     @PostMapping(value = "/query")
-    @ApiOperation(value = "帖子查询")
+    @ApiOperation(value = "帖子查询[参数:invitation_title]")
     List<Invitation> queryInvitation(@RequestBody Map<String, Object> map){
         return invitationService.queryInvitation((String)map.get("invitation_title"));
     }
 
     @PostMapping(value = "/delete")
-    @ApiOperation(value = "删除帖子")
+    @ApiOperation(value = "删除帖子[参数:invitation_id]")
     Boolean deleteInvitation(@RequestBody Map<String, Object> map){
         return invitationService.deleteInvitation((Integer) map.get("invitation_id"));
     }
 
     @PostMapping(value = "/getinvitationbyid")
-    @ApiOperation(value = "根据id获得帖子")
+    @ApiOperation(value = "根据id获得帖子[参数:invitation_id]")
     List<Invitation> getInvitationById(@RequestBody Map<String, Object> map){
         return invitationService.getInvitationById((Integer) map.get("invitation_id"));
     }

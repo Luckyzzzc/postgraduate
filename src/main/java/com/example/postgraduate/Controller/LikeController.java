@@ -27,7 +27,7 @@ public class LikeController {
     }
 
     @PostMapping("/deletelike")
-    @ApiOperation("/用于删除点赞信息")
+    @ApiOperation("/用于删除点赞信息[参数:like_id]")
     boolean deleteLike(@RequestBody Map<String, Object> map){
         return likeService.deleteLike((Integer)map.get("like_id"));
     }

@@ -41,13 +41,13 @@ public class carouselController {
 	
 	
 	@PostMapping("/deleteCarousel")
-	@ApiOperation(value = "用于删除轮播图")
+	@ApiOperation(value = "用于删除轮播图[参数 carousel_id]")
 	public boolean deleteCarousel(@RequestBody Map<String, Object> map) {
 		return carouselService.deleteCarousel((Integer)map.get("carousel_id"));
 	}
 	
 	@PostMapping("/getCarousel")
-	@ApiOperation(value = "用于获得指定id的轮播图")
+	@ApiOperation(value = "用于获得指定id的轮播图[参数 carousel_id]")
 	public Carousel getCarousel(@RequestBody Map<String, Object> map) {
 		return carouselService.getCarousel((Integer)map.get("carousel_id"));
 	}
