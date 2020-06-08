@@ -4,16 +4,16 @@ import com.example.postgraduate.POJO.Comment;
 import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import com.example.postgraduate.Server.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import com.example.postgraduate.Util.TokenUtil;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +52,14 @@ public class userController {
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "用于登录用户的接口")
-    boolean login(@RequestBody userRigistAndLogin userRigistAndLogin){
-        return userService.find(userRigistAndLogin.getUsername()).getPassword().compareTo(userRigistAndLogin.getPassword()) == 0;
+    boolean login(HttpServletResponse response, @RequestBody userRigistAndLogin userRigistAndLogin){
+        if(userService.find(userRigistAndLogin.getUsername()).getPassword().compareTo(userRigistAndLogin.getPassword()) == 0) {
+            User user = new User(userRigistAndLogin.getUsername(),userRigistAndLogin.getPassword());
+            String token = TokenUtil.sign(user);
+            response.addHeader("token", token);
+            return true;
+        }
+        return false;
     }
 
     @PostMapping(value = "/addinvitation")
