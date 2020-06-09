@@ -79,4 +79,9 @@ public class InvitationServiceIml implements InvitationService{
 		return invitationMapper.countinvitationbyplate();
 	}
 
+    @Override
+    public String getUsername(Integer post_user) {
+        return invitationMapper.getUsername(post_user);
+    }
+
 }

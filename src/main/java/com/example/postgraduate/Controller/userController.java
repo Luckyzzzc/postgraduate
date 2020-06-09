@@ -4,6 +4,7 @@ import com.example.postgraduate.POJO.Comment;
 import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.User;
 import com.example.postgraduate.Server.UserService;
+import com.example.postgraduate.Util.ResultUtil;
 import com.example.postgraduate.Util.TokenUtil;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +53,17 @@ public class userController {
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "用于登录用户的接口")
-    boolean login(HttpServletResponse response, @RequestBody userRigistAndLogin userRigistAndLogin){
-        if(userService.find(userRigistAndLogin.getUsername()).getPassword().compareTo(userRigistAndLogin.getPassword()) == 0) {
-            User user = new User(userRigistAndLogin.getUsername(),userRigistAndLogin.getPassword());
-            String token = TokenUtil.sign(user);
+    Object login(HttpServletResponse response, @RequestBody userRigistAndLogin userRigistAndLogin){
+        User user = userService.find(userRigistAndLogin.getUsername());
+        if(user == null){
+            return ResultUtil.error(500,"用户名不存在");
+        }
+        if(user.getPassword().compareTo(userRigistAndLogin.getPassword()) == 0) {
+            String token = TokenUtil.sign(userRigistAndLogin.getUsername());
             response.addHeader("token", token);
             return true;
         }
-        return false;
+        return ResultUtil.error(500,"用户名或密码错误");
     }
 
     @PostMapping(value = "/addinvitation")

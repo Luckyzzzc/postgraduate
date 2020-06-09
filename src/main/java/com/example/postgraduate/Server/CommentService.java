@@ -22,4 +22,6 @@ public interface CommentService {
     List<Comment> getCommentByUser(Integer comment_user);
 
     List<Comment> getCommentById(Integer comment_id);
+
+    String getUsername(Integer comment_user);
 }

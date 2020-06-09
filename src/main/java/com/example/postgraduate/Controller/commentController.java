@@ -3,6 +3,8 @@ package com.example.postgraduate.Controller;
 import com.example.postgraduate.POJO.Comment;
 import com.example.postgraduate.Server.CommentService;
 
+import com.example.postgraduate.Util.ResultUtil;
+import com.example.postgraduate.Util.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,8 +27,18 @@ public class commentController {
 
     @PostMapping("/addcomment")
     @ApiOperation(value = "用于添加评论的接口")
-    boolean addComment(@RequestBody postComment postComment){
+    Object addComment(@RequestBody postComment postComment, HttpServletRequest request){
         Comment comment = new Comment(postComment.content,postComment.comment_user,postComment.comment_invitation);
+        String username = null;
+        if(commentService.getUsername(postComment.getComment_user()) == null){
+            return ResultUtil.error(500,"用户不存在");
+        }else{
+            username = commentService.getUsername(postComment.getComment_user());
+        }
+        String token = TokenUtil.sign(username);
+        if(request.getHeader("token") == null || token.compareTo(request.getHeader("token")) != 0){
+            return ResultUtil.error(500,"用户未登陆");
+        }
         return commentService.addComment(comment);
     }
 

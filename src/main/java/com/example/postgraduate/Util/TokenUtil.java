@@ -12,13 +12,13 @@ public class TokenUtil {
     private static final long EXPIRE_TIME= 10*60*60*1000;
     private static final String TOKEN_SECRET="txdy";  //密钥盐
 
-    public static String sign(User user){
+    public static String sign(String username){
         String token = null;
         try {
             Date expiresAt = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             token = JWT.create()
                     .withIssuer("auth0")
-                    .withClaim("username", user.getUsername())
+                    .withClaim("username", username)
                     .withExpiresAt(expiresAt)
                     // 使用了HMAC256加密算法。
                     .sign(Algorithm.HMAC256(TOKEN_SECRET));

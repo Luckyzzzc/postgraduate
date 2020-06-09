@@ -51,4 +51,9 @@ public class CommentServiceIml implements CommentService{
     public List<Comment> getCommentById(Integer comment_id) {
         return commentMapper.getCommentById(comment_id);
     }
+
+    @Override
+    public String getUsername(Integer comment_user) {
+        return commentMapper.getUsername(comment_user);
+    }
 }
