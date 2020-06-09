@@ -36,4 +36,6 @@ public interface UserService {
     List<Comment> getAllComment(Integer user_id);
     
     boolean changeSchoolId(Integer user_id, Integer school_id);
+    
+    boolean changeSubjectId(Integer user_id, Integer subject_id);
 }

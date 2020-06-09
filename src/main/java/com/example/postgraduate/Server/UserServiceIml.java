@@ -91,5 +91,10 @@ public class UserServiceIml implements UserService {
 		return userMapper.changeSchoolId(user_id, school_id);
 	}
 
+	@Override
+	public boolean changeSubjectId(Integer user_id, Integer subject_id) {
+		return userMapper.changeSubjectId(user_id, subject_id);
+	}
+
 
 }
