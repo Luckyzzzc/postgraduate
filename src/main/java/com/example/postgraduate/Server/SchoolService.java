@@ -14,4 +14,6 @@ public interface SchoolService {
     boolean deleteSchool(Integer school_id);
 
     List<School> getAllSchool();
+
+    List<School> getSchoolById(Integer school_id);
 }

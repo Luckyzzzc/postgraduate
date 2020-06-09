@@ -28,4 +28,9 @@ public class SchoolServiceIml implements SchoolService{
     public List<School> getAllSchool() {
         return schoolMapper.getAllSchool();
     }
+
+    @Override
+    public List<School> getSchoolById(Integer school_id) {
+        return schoolMapper.getSchoolById(school_id);
+    }
 }

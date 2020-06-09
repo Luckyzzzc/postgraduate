@@ -38,6 +38,12 @@ public class SchoolController {
     List<School> getAllSchool(){
         return schoolService.getAllSchool();
     }
+
+    @PostMapping("/getschool")
+    @ApiOperation(value = "通过id获得学校[参数：school_id]")
+    List<School> getAllSchool(@RequestBody Map<String, Object> map){
+        return schoolService.getSchoolById((Integer)map.get("school_id"));
+    }
 }
 
 class schoolTmp{

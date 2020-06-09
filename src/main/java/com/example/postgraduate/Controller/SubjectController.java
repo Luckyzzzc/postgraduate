@@ -29,7 +29,7 @@ public class SubjectController {
 
     @PostMapping(value = "/deletesubject")
     @ApiOperation(value = "用于删除学科[参数:subject_id]")
-    boolean deleteSubject(Map<String, Object> map){
+    boolean deleteSubject(@RequestBody Map<String, Object> map){
         return subjectService.deleteSubject((Integer)map.get("subject_id"));
     }
 
@@ -40,8 +40,8 @@ public class SubjectController {
     }
     
     @PostMapping(value = "/getsubjectbyid")
-    @ApiOperation(value = "按照学科id获得学科")
-    Subject getSubjectById(Map<String, Object> map) {
-    	return subjectService.getSubjectById((Integer)map.get("id"));
+    @ApiOperation(value = "按照学科id获得学科[参数：subjcet_id]")
+    Subject getSubjectById(@RequestBody Map<String, Object> map) {
+    	return subjectService.getSubjectById((Integer)map.get("subject_id"));
     }
 }

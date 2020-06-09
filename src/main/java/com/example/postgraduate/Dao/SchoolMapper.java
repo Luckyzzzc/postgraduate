@@ -20,4 +20,7 @@ public interface SchoolMapper {
 
     @Select("SELECT * FROM `postgraduate`.`school`")
     List<School> getAllSchool();
+
+    @Select("SELECT * FROM `postgraduate`.`school` WHERE `school`.`school_id` = #{school_id}")
+    List<School> getSchoolById(Integer school_id);
 }
