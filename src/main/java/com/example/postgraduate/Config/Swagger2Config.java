@@ -41,9 +41,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("考研帮 RESTful API")
+                .title("烤盐帮API")
                 .description("展示先做基础功能，后面再添加业务")
-                .version("1.0")
+                .version("2.0")
                 .build();
     }
 

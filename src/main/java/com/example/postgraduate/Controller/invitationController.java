@@ -4,6 +4,8 @@ import com.example.postgraduate.POJO.Invitation;
 import com.example.postgraduate.POJO.PlateCounts;
 import com.example.postgraduate.Server.InvitationService;
 
+import com.example.postgraduate.Util.ResultUtil;
+import com.example.postgraduate.Util.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +31,12 @@ public class invitationController {
 
     @PostMapping(value = "/post")
     @ApiOperation(value = "用于添加帖子的接口")
-    boolean post(@RequestBody postInvitation postInvitation){
+    Object post(@RequestBody postInvitation postInvitation, HttpServletRequest request){
         Invitation invitation = new Invitation(postInvitation.getInvitation_title(),postInvitation.getContent(),postInvitation.getPlate(),postInvitation.getPost_user(),postInvitation.getInvitation_type(),postInvitation.getSchool_id());
+        String username = invitationService.getUsername(postInvitation.getPost_user());
+        String token = TokenUtil.sign(username);
+        if(request.getHeader("token") == null || token.compareTo(request.getHeader("token")) != 0)
+            return ResultUtil.error(500,"用户未登陆");
         return invitationService.post(invitation);
     }
 

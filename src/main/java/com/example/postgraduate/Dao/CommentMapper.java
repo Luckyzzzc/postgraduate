@@ -33,4 +33,7 @@ public interface CommentMapper {
 
     @Select("SELECT * FROM `postgraduate`.`comment` WHERE `comment`.`comment_id` = #{comment_id};")
     List<Comment> getCommentById(Integer comment_id);
+
+    @Select("SELECT `postgraduate`.`user`.`username` FROM `postgraduate`.`user` WHERE `user`.`user_id` = #{comment_user};")
+    String getUsername(Integer comment_user);
 }

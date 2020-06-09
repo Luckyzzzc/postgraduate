@@ -55,5 +55,7 @@ public interface InvitationMapper {
     		+ " on `postgraduate`.`invitation`.`plate` = `postgraduate`.`plate` .`id`"
     		+ "group by(`postgraduate`.`invitation`.`plate`)")
     List<PlateCounts> countinvitationbyplate();
-    
+
+    @Select("SELECT `postgraduate`.`user`.`username` FROM `postgraduate`.`user` WHERE `user`.`user_id` = #{post_user};")
+    String getUsername(Integer post_user);
 }

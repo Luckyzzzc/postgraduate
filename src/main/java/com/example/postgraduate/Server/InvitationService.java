@@ -34,4 +34,6 @@ public interface InvitationService {
     List<Integer> getAllPlateList();
     
     List<PlateCounts> countinvitationbyplate();
+
+    String getUsername(Integer post_user);
 }
