@@ -18,7 +18,8 @@ public class User {
     private Integer follow;
     private String head_sculpture;
     private Integer school_id;
-
+    private Integer subject_id;
+    
     public User(){}
 
     public User(String username, String password){
@@ -33,7 +34,8 @@ public class User {
         this.comment_number = 0;
         this.follow = 0;
         this.head_sculpture = null;
-        this.school_id=0;
+        this.school_id = 0;
+        this.subject_id = 0;
     }
 
     public void setUser_id(Integer user_id) {
@@ -138,6 +140,14 @@ public class User {
 
 	public void setSchool_id(Integer school_id) {
 		this.school_id = school_id;
+	}
+
+	public Integer getSubject_id() {
+		return subject_id;
+	}
+
+	public void setSubject_id(Integer subject_id) {
+		this.subject_id = subject_id;
 	}
 
 }
