@@ -17,6 +17,7 @@ public class User {
     private Integer comment_number;
     private Integer follow;
     private String head_sculpture;
+    private Integer school_id;
 
     public User(){}
 
@@ -32,6 +33,7 @@ public class User {
         this.comment_number = 0;
         this.follow = 0;
         this.head_sculpture = null;
+        this.school_id=0;
     }
 
     public void setUser_id(Integer user_id) {
@@ -129,5 +131,13 @@ public class User {
     public String getHead_sculpture() {
         return head_sculpture;
     }
+
+	public Integer getSchool_id() {
+		return school_id;
+	}
+
+	public void setSchool_id(Integer school_id) {
+		this.school_id = school_id;
+	}
 
 }

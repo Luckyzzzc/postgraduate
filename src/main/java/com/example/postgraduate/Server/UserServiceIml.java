@@ -86,5 +86,10 @@ public class UserServiceIml implements UserService {
         return userMapper.getAllComment(user_id);
     }
 
+	@Override
+	public boolean changeSchoolId(Integer user_id, Integer school_id) {
+		return userMapper.changeSchoolId(user_id, school_id);
+	}
+
 
 }

@@ -83,6 +83,13 @@ public class userController {
     boolean changeSex(@RequestBody changeDate changeDate){
         return userService.changeSex(changeDate.getUser_id(), (Integer) changeDate.getDate());
     }
+    
+    @PostMapping(value = "/changeschoolid")
+    @ApiOperation(value = "用于更改学校id的接口")
+    boolean changeSchoolId(@RequestBody changeDate changeDate){
+        return userService.changeSchoolId(changeDate.getUser_id(), (Integer) changeDate.getDate());
+    }
+    
 
     @PostMapping(value = "/addfollow")
     @ApiOperation(value = "用于添加关注的接口[参数:user_id]")
