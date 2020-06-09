@@ -14,8 +14,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    @Insert("INSERT INTO `postgraduate`.`user` (`username`, `password`, `phone`, `root`, `sex`, `isBan`, `invitation_number`, `comment_number`, `follow`, `head_sculpture`, `nickname`)" +
-            " VALUES (#{username}, #{password}, #{phone}, #{root}, #{sex}, #{isBan}, #{invitation_number}, #{comment_number}, #{follow}, #{head_sculpture}, #{nickname});")
+    @Insert("INSERT INTO `postgraduate`.`user` (`username`, `password`, `phone`, `root`, `sex`, `isBan`, `invitation_number`, `comment_number`, `follow`, `head_sculpture`, `nickname`,`school_id`)" +
+            " VALUES (#{username}, #{password}, #{phone}, #{root}, #{sex}, #{isBan}, #{invitation_number}, #{comment_number}, #{follow}, #{head_sculpture}, #{nickname}, #{school_id});")
     boolean regist(User user);
 
     @Update("UPDATE `postgraduate`.`user` SET `user`.`isBan` = #{isBan} WHERE `user`.`user_id` = #{user_id};")
@@ -48,6 +48,10 @@ public interface UserMapper {
     @Update("UPDATE `postgraduate`.`user` SET `user`.`nickname` = #{nickname} WHERE `user`.`user_id` = #{user_id};")
     boolean changeNickname(Integer user_id, String nickname);
 
+    @Update("UPDATE `postgraduate`.`user` SET `user`.`school_id` = #{school_id} WHERE `user`.`user_id` = #{user_id};")
+    boolean changeSchoolId(Integer user_id, Integer school_id);
+    
+    
     @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`post_user` = #{user_id};")
     List<Invitation> getAllInvitation(Integer user_id);
 
