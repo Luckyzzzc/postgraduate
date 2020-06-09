@@ -36,19 +36,19 @@ public class commentController {
     }
 
     @PostMapping("/addlike")
-    @ApiOperation(value = "用于给评论添加点赞数的接口")
-    boolean addLike(@RequestBody Integer comment_id){
-        return commentService.addLike(comment_id);
+    @ApiOperation(value = "用于给评论添加点赞数的接口[参数:comment_id]")
+    boolean addLike(@RequestBody  HashMap<String, Object> map){
+        return commentService.addLike((Integer)map.get("comment_id"));
     }
 
     @PostMapping("/getinvitationcomment")
-    @ApiOperation(value = "用于获得某个帖子的评论")
+    @ApiOperation(value = "用于获得某个帖子的评论[参数:invitation_id]")
     List<Comment> getInvitationComment(@RequestBody HashMap<String, Object> map){
         return commentService.getInvitationComment((Integer)map.get("invitation_id") );
     }
 
     @PostMapping("deletecomment")
-    @ApiOperation(value = "删除某个评论")
+    @ApiOperation(value = "删除某个评论[参数:comment_id]")
     boolean deleteComment(@RequestBody HashMap<String, Object> map){
         return commentService.deleteComment((Integer)map.get("comment_id"));
     }
@@ -60,13 +60,13 @@ public class commentController {
     }
 
     @PostMapping("getcommentbyuser")
-    @ApiOperation(value = "获取某用户所有评论")
+    @ApiOperation(value = "获取某用户所有评论[参数:comment_user]")
     List<Comment> getCommentByUser(@RequestBody HashMap<String, Object> map){
         return commentService.getCommentByUser((Integer)map.get("comment_user"));
     }
 
     @PostMapping("getcommentbyid")
-    @ApiOperation(value = "根据评论id获得评论")
+    @ApiOperation(value = "根据评论id获得评论[参数:comment_id]")
     List<Comment> getCommentById(@RequestBody HashMap<String, Object> map){
         return commentService.getCommentById((Integer)map.get("comment_id"));
     }

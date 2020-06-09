@@ -1,15 +1,16 @@
 package com.example.postgraduate.POJO;
 
 public class PlateCounts {
-	Integer invitation_type;
+	Integer plate;
 	String name;
 	Integer counts;
 	
-	public Integer getInvitation_type() {
-		return invitation_type;
+	
+	public Integer getPlate() {
+		return plate;
 	}
-	public void setInvitation_type(Integer invitation_type) {
-		this.invitation_type = invitation_type;
+	public void setPlate(Integer plate) {
+		this.plate = plate;
 	}
 	public String getName() {
 		return name;

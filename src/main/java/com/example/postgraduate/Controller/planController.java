@@ -37,19 +37,19 @@ public class planController {
     }
 
     @PostMapping("/deleteplan")
-    @ApiOperation(value = "用于删除计划的接口")
+    @ApiOperation(value = "用于删除计划的接口[参数:post_id]")
     boolean deletePlan(@RequestBody Map<String, Object> map){
         return planService.deletePlan((Integer)map.get("post_id"));
     }
 
     @PostMapping("/getPlan")
-    @ApiOperation(value = "用于获得用户计划")
+    @ApiOperation(value = "用于获得用户计划[参数:user_id]")
     List<Plan> getAllPlan(@RequestBody Map<String, Object> map){
         return planService.getAllPlan((Integer)map.get("user_id"));
     }
 
     @PostMapping("/getplanbyid")
-    @ApiOperation(value = "通过id获得计划")
+    @ApiOperation(value = "通过id获得计划[参数:plan_id]")
     Plan getPlanById(@RequestBody Map<String, Object> map){
         return planService.getPlanById((Integer)map.get("plan_id"));
     }

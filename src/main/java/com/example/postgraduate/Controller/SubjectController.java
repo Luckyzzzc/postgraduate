@@ -22,13 +22,13 @@ public class SubjectController {
     SubjectService subjectService;
 
     @PostMapping(value = "/addsubject")
-    @ApiOperation(value = "用于添加学科")
+    @ApiOperation(value = "用于添加学科[参数:subject_name]")
     boolean addSubject(@RequestBody Map<String, Object> map){
         return subjectService.addSubject((String)map.get("subject_name"));
     }
 
     @PostMapping(value = "/deletesubject")
-    @ApiOperation(value = "用于删除学科")
+    @ApiOperation(value = "用于删除学科[参数:subject_id]")
     boolean deleteSubject(Map<String, Object> map){
         return subjectService.deleteSubject((Integer)map.get("subject_id"));
     }
@@ -41,7 +41,7 @@ public class SubjectController {
     
     @PostMapping(value = "/getsubjectbyid")
     @ApiOperation(value = "按照学科id获得学科")
-    Subject getSubjectById(Integer id) {
-    	return subjectService.getSubjectById(id);
+    Subject getSubjectById(Map<String, Object> map) {
+    	return subjectService.getSubjectById((Integer)map.get("id"));
     }
 }

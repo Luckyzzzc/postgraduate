@@ -63,13 +63,13 @@ public class userController {
     }
 
     @PostMapping(value = "/addinvitation")
-    @ApiOperation(value = "用于添加帖子的接口")
+    @ApiOperation(value = "用于添加帖子的接口[参数:user_id]")
     boolean addInvitation(@RequestBody Map<String, Object> map){
         return userService.addInvitation((Integer)map.get("user_id"));
     }
 
     @PostMapping(value = "/addcomment")
-    @ApiOperation(value = "用于添加评论的接口")
+    @ApiOperation(value = "用于添加评论的接口[参数:user_id]")
     boolean addComment(@RequestBody Map<String, Object> map){
         return userService.addComment((Integer)map.get("user_id"));
     }
@@ -81,7 +81,7 @@ public class userController {
     }
 
     @PostMapping(value = "/addfollow")
-    @ApiOperation(value = "用于添加关注的接口")
+    @ApiOperation(value = "用于添加关注的接口[参数:user_id]")
     boolean addFollow(@RequestBody Map<String, Object> map){
         return userService.addFollow((Integer)map.get("user_id"));
     }
@@ -99,13 +99,13 @@ public class userController {
     }
 
     @PostMapping(value = "/findbyid")
-    @ApiOperation(value = "通过id查询用户")
+    @ApiOperation(value = "通过id查询用户[参数:user_id]")
     User findById(@RequestBody Map<String, Object> map){
         return userService.findById((Integer)map.get("user_id"));
     }
 
     @PostMapping(value = "/findbyname")
-    @ApiOperation(value = "通过用户名查询用户")
+    @ApiOperation(value = "通过用户名查询用户[参数:username]")
     User findByName(@RequestBody Map<String, Object> map){
         return userService.find((String) map.get("username"));
     }

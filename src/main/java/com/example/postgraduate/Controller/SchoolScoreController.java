@@ -27,13 +27,13 @@ public class SchoolScoreController {
     }
 
     @PostMapping("/selectbyid")
-    @ApiOperation(value = "用于获得某个学校分数信息的接口")
+    @ApiOperation(value = "用于获得某个学校分数信息的接口[参数:school_id]")
     public List<SchoolScore> selectById(@RequestBody Map<String, Object> map){
         return schoolScoreService.selectSchoolScoreById((Integer)map.get("school_id"));
     }
 
     @PostMapping("/delete")
-    @ApiOperation(value = "用于删除某条信息得接口")
+    @ApiOperation(value = "用于删除某条信息得接口[参数:school_id]")
     public boolean deleteScore(@RequestBody Map<String, Object> map){
         return schoolScoreService.deleteSchoolScore((Integer)map.get("school_id"));
     }

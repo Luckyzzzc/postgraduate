@@ -40,7 +40,7 @@ public interface InvitationMapper {
     @Delete("DELETE FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_id` = #{invitation_id}")
     Boolean deleteInvitation(Integer invitation_id);
 
-    @Select("SELECT FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_id` = #{invitation_id}")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_id` = #{invitation_id}")
     List<Invitation> getInvitationById(Integer invitation_id);
 
     @Update("UPDATE `postgraduate`.`invitation` SET invitation_title = #{title}, content = #{content}, plate = #{plate} WHERE invitation_id = #{invitation_id};")

@@ -28,7 +28,7 @@ public class SchoolController {
     }
 
     @PostMapping("/deleteschool")
-    @ApiOperation(value = "用于删除学校")
+    @ApiOperation(value = "用于删除学校[参数:school_id]")
     boolean deleteSchool(@RequestBody Map<String, Object> map){
         return schoolService.deleteSchool((Integer)map.get("school_id"));
     }

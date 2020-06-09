@@ -28,7 +28,7 @@ public class PlateController {
 	PlateService plateService;
 	
 	@PostMapping("/addplate")
-    @ApiOperation(value = "用于添加分区的接口")
+    @ApiOperation(value = "用于添加分区的接口[参数:name]")
 	Boolean  addPlate(@RequestBody Map<String, Object> map){
         Plate plate = new Plate((String)map.get("name"));
         return plateService.addPlate(plate);
@@ -41,7 +41,7 @@ public class PlateController {
 //    }
 
     @PostMapping("/deleteplate")
-    @ApiOperation(value = "用于删除分区的接口")
+    @ApiOperation(value = "用于删除分区的接口[参数:id]")
     boolean deletePlan(@RequestBody Map<String, Object> map){
         return plateService.deletePlate((Integer)map.get("id"));
     }
@@ -53,7 +53,7 @@ public class PlateController {
     }
 
     @PostMapping("/getplanbyid")
-    @ApiOperation(value = "通过id获得分区")
+    @ApiOperation(value = "通过id获得分区[参数:id]")
     Plate getPlateById(@RequestBody Map<String, Object> map){
         return plateService.getPlateById((Integer)map.get("id"));
     }
