@@ -84,4 +84,20 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.getUsername(post_user);
     }
 
+    @Override
+    public List<Invitation> getCatalog() {
+        return invitationMapper.getCatalog();
+    }
+
+    @Override
+    public List<Invitation> getAllInvitation() {
+        return invitationMapper.getAllInvitation();
+    }
+
+    @Override
+    public List<Invitation> getAllCatalog() {
+        return invitationMapper.getAllCatalog();
+    }
+
+
 }

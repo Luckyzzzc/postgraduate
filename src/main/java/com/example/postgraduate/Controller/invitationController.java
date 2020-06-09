@@ -63,6 +63,12 @@ public class invitationController {
     List<Invitation> getInvitation(){
         return invitationService.getInvitation();
     }
+
+    @PostMapping(value = "/getcatalog")
+    @ApiOperation(value = "获得简章")
+    List<Invitation> getCatalog(){
+        return invitationService.getCatalog();
+    }
     
     @PostMapping(value = "/getPlateTypes")
     @ApiOperation(value = "获取全部板块信息")
@@ -111,8 +117,18 @@ public class invitationController {
     List<PlateCounts> countinvitationbyplate(){
     	return invitationService.countinvitationbyplate();
     }
-    
-   
+
+    @PostMapping(value = "/getallinvitation")
+    @ApiOperation(value = "获得全部帖子")
+    List<Invitation> getAllInvitation(){
+        return invitationService.getInvitation();
+    }
+
+    @PostMapping(value = "/getallcatalog")
+    @ApiOperation(value = "获得全部简章")
+    List<Invitation> getAllCatalog(){
+        return invitationService.getCatalog();
+    }
 }
 
 class changeInvitation{
