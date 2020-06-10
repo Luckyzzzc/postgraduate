@@ -14,6 +14,13 @@ public class ResultUtil {
         return success(null);
     }
 
+    public static Result success(Integer code, String msg){
+        Result Result=new Result();
+        Result.setCode(code);
+        Result.setMsg(msg);
+        return Result;
+    }
+
     public static Result error(Integer code,String resultResult){
         Result Result=new Result();
         Result.setCode(code);

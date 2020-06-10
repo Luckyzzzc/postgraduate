@@ -7,11 +7,8 @@ import com.example.postgraduate.Server.InvitationService;
 import com.example.postgraduate.Util.ResultUtil;
 import com.example.postgraduate.Util.TokenUtil;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +31,7 @@ public class invitationController {
     Object post(@RequestBody postInvitation postInvitation, HttpServletRequest request){
         Invitation invitation = new Invitation(postInvitation.getInvitation_title(),postInvitation.getContent(),postInvitation.getPlate(),postInvitation.getPost_user(),postInvitation.getInvitation_type(),postInvitation.getSchool_id());
         String username = invitationService.getUsername(postInvitation.getPost_user());
-        String token = TokenUtil.sign(username);
-        if(request.getHeader("token") == null || token.compareTo(request.getHeader("token")) != 0)
+        if(request.getHeader("token") == null || username.compareTo(TokenUtil.getUsername(request.getHeader("token"))) != 0)
             return ResultUtil.error(500,"用户未登陆");
         return invitationService.post(invitation);
     }
@@ -121,13 +117,13 @@ public class invitationController {
     @PostMapping(value = "/getallinvitation")
     @ApiOperation(value = "获得全部帖子")
     List<Invitation> getAllInvitation(){
-        return invitationService.getInvitation();
+        return invitationService.getAllInvitation();
     }
 
     @PostMapping(value = "/getallcatalog")
     @ApiOperation(value = "获得全部简章")
     List<Invitation> getAllCatalog(){
-        return invitationService.getCatalog();
+        return invitationService.getAllCatalog();
     }
 }
 

@@ -37,28 +37,21 @@ public class Invitation {
 
     public Invitation(){}
 
-    public Invitation(String invitation_title, String content, Integer plate, Integer post_user,Integer school_id,Integer invitation_type){
+    public Invitation(String invitation_title, String content, Integer plate, Integer post_user,Integer invitation_type,Integer school_id){
         this.invitation_title = invitation_title;
         this.content = content;
         this.plate = plate;
         this.invitation_status = 0;
         this.scan_number = 0;
         this.post_user = post_user;
+        this.school_id = school_id;
+        this.invitation_type = invitation_type;
 
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         this.create_time = formatter.format(date);
         this.update_time = formatter.format(date);
-        
-        if(school_id ==null) {
-        	school_id = 0;
-        }
-        this.school_id =school_id;
-        if(invitation_type == null) {
-        	invitation_type = 0;
-        }
-        this.invitation_type = invitation_type;
     };
 
     public Integer getInvitation_id() {

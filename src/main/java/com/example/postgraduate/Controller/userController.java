@@ -7,6 +7,7 @@ import com.example.postgraduate.Server.UserService;
 import com.example.postgraduate.Util.ResultUtil;
 import com.example.postgraduate.Util.TokenUtil;
 import io.swagger.annotations.*;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -85,9 +86,9 @@ public class userController {
     }
     
     @PostMapping(value = "/changeschoolid")
-    @ApiOperation(value = "用于更改学校id的接口")
-    boolean changeSchoolId(@RequestBody changeDate changeDate){
-        return userService.changeSchoolId(changeDate.getUser_id(), (Integer) changeDate.getDate());
+    @ApiOperation(value = "用于更改学校id的接口[参数:user_id,school_id]")
+    boolean changeSchoolId(@RequestBody Map<String, Object> map){
+        return userService.changeSchoolId((Integer)map.get("user_id"), (Integer)map.get("school_id"));
     }
     
     @PostMapping(value = "/changesubjectid")

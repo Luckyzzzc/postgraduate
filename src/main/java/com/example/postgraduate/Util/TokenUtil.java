@@ -40,4 +40,9 @@ public class TokenUtil {
             return false;
         }
     }
+
+    public static String getUsername(String token){
+        DecodedJWT jwt = JWT.decode(token);
+        return jwt.getClaim("username").asString();
+    }
 }

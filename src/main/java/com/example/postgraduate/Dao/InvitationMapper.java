@@ -22,19 +22,19 @@ public interface InvitationMapper {
     @Update("UPDATE `postgraduate`.`invitation` SET `invitation`.`scan_number` = `invitation`.`scan_number` + 1 WHERE `invitation`.`invitation_id` = #{invitation_id};")
     boolean addScan(Integer invitation_id);
 
-    @Select("SELECT * FROM `postgraduate`.`invitation` ORDER BY `invitation`.`scan_number` desc;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 0 ORDER BY `invitation`.`scan_number` desc;")
     List<Invitation> getHotInvitation();
 
-    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 1 limit 0,10;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 0 limit 0,10;")
     List<Invitation> getInvitation();
 
-    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 0 limit 0,10;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 1 limit 0,10;")
     List<Invitation> getCatalog();
 
-    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 1;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 0;")
     List<Invitation> getAllInvitation();
 
-    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 0;")
+    @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`invitation_type` = 1;")
     List<Invitation> getAllCatalog();
 
     @Select("SELECT * FROM `postgraduate`.`invitation` WHERE `invitation`.`plate` = #{plate};")

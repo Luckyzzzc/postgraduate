@@ -35,8 +35,7 @@ public class commentController {
         }else{
             username = commentService.getUsername(postComment.getComment_user());
         }
-        String token = TokenUtil.sign(username);
-        if(request.getHeader("token") == null || token.compareTo(request.getHeader("token")) != 0){
+        if(request.getHeader("token") == null || username.compareTo(TokenUtil.getUsername(request.getHeader("token"))) != 0){
             return ResultUtil.error(500,"用户未登陆");
         }
         return commentService.addComment(comment);
