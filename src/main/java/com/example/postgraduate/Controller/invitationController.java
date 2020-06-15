@@ -93,6 +93,7 @@ public class invitationController {
     @PostMapping(value = "/delete")
     @ApiOperation(value = "删除帖子[参数:invitation_id]")
     Boolean deleteInvitation(@RequestBody Map<String, Object> map){
+        invitationService.deleteComment((Integer) map.get("invitation_id"));
         return invitationService.deleteInvitation((Integer) map.get("invitation_id"));
     }
 

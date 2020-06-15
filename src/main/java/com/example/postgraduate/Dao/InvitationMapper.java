@@ -67,4 +67,7 @@ public interface InvitationMapper {
 
     @Select("SELECT `postgraduate`.`user`.`username` FROM `postgraduate`.`user` WHERE `user`.`user_id` = #{post_user};")
     String getUsername(Integer post_user);
+
+    @Delete("DELETE FROM `postgraduate`.`comment` WHERE `comment`.`comment_invitation` = #{comment_invitation}")
+    boolean deleteComment(Integer comment_invitation);
 }

@@ -42,4 +42,6 @@ public interface InvitationService {
     List<Invitation> getAllInvitation();
 
     List<Invitation> getAllCatalog();
+
+    boolean deleteComment(Integer comment_invitation);
 }

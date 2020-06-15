@@ -99,5 +99,10 @@ public class InvitationServiceIml implements InvitationService{
         return invitationMapper.getAllCatalog();
     }
 
+    @Override
+    public boolean deleteComment(Integer comment_invitation) {
+        return invitationMapper.deleteComment(comment_invitation);
+    }
+
 
 }
